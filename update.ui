@@ -1,0 +1,78 @@
+#!/usr/bin/bash
+
+#colors
+c1='\e[0;1;38;2;255;235;55m'
+c2='\e[0;1;90m'
+c3='\e[0m'
+
+HIDCRSR(){ echo -en "\033[?25l";}
+NORM(){ echo -en "\033[?12l\033[?25h";}
+
+HIDCRSR
+echo -ne "${c1}Updaing.   —${c2}——————————————————— ${c3}(0.1%)   \r"
+sleep 0.4
+echo -ne "${c1}Updaing..  ——${c2}—————————————————— ${c3}(0.3%)   \r"
+sleep 0.1
+echo -ne "${c1}Updaing... ———${c2}————————————————— ${c3}(0.5%)   \r"
+sleep 0.1
+echo -ne "${c1}Updaing.   ————${c2}———————————————— ${c3}(0.7%)   \r"
+sleep 0.1
+echo -ne "${c1}Updaing... —————${c2}——————————————— ${c3}(0.9%)   \r"
+sleep 0.1
+connection="$(ping -c 1 -q www.google.com >&/dev/null; echo $?)"
+if [[ "$connection" != 0 ]]
+then echo -ne "\033[0m"
+sleep 1
+echo -ne "\033[0m\033[1;91m[\033[1;92m-\033[1;91m] No Internet\033[1;92m connection!           \033[0m\r"
+echo -ne "\033[0m"
+sleep 2
+NORM
+exit
+fi
+echo -ne "${c1}Updaing.   ——————${c2}—————————————— ${c3}(1.1%)   \r"
+sleep 0.1
+echo -ne "${c1}Updaing..  ———————${c2}————————————— ${c3}(02.59%) \r"
+sleep 0.1
+cd .. ; rm -rf Termux-ui
+echo -ne "${c1}Updaing... ————————${c2}———————————— ${c3}(04.19%) \r"
+sleep 0.1
+echo -ne "${c1}Updaing.   —————————${c2}——————————— ${c3}(06.28%) \r"
+sleep 0.1
+echo -ne "${c1}Updaing..  ——————————${c2}—————————— ${c3}(08.22%) \r"
+sleep 0.1
+echo -ne "${c1}Updaing... ———————————${c2}————————— ${c3}(10.29%) \r"
+sleep 0.1
+echo -ne "${c1}Updaing.   ————————————${c2}———————— ${c3}(10.42%) \r"
+sleep 0.1
+echo -ne "${c1}Updaing..  —————————————${c2}——————— ${c3}(20.39%) \r"
+sleep 0.1
+echo -ne "${c1}Updaing... ——————————————${c2}—————— ${c3}(20.46%) \r"
+sleep 0.1
+echo -ne "${c1}Updaing.   ———————————————${c2}————— ${c3}(30.32%) \r"
+sleep 0.1
+echo -ne "${c1}Updaing..  ————————————————${c2}———— ${c3}(40.26%) \r"
+sleep 0.1
+git clone https://github.com/imegeek/Termux-ui &> /dev/null
+echo -ne "${c1}Updaing... —————————————————${c2}——— ${c3}(50.70%) \r"
+sleep 0.1
+echo -ne "${c1}Updaing.   ——————————————————${c2}—— ${c3}(60.13%) \r"
+sleep 0.1
+echo -ne "${c1}Updaing..  ———————————————————${c2}— ${c3}(70.68%) \r"
+sleep 0.1
+echo -ne "${c1}Updaing... ————————————————————${c3} ${c3}(80.90%) \r"
+sleep 0.1
+echo -ne "${c1}Updaing.   ————————————————————${c3} ${c3}(90.34%) \r"
+sleep 0.1
+echo -ne "${c1}Updaing... ————————————————————${c3} ${c3}(90.55%) \r"
+sleep 0.1
+echo -ne "${c1}Updaing.   ————————————————————${c3} ${c3}(98.81%) \r"
+sleep 0.1
+echo -ne "${c1}Updaing..  ————————————————————${c3} ${c3}(99.99%) \r"
+sleep 0.1
+echo -ne "${c1}Updaing... ————————————————————${c3} ${c3}(100.0%) \r"
+sleep 0.6
+echo -ne "                                                        \r"  
+echo -ne "${c1}[√] Update successful, Re-Launching...\r" | pv -qL 15
+sleep 0.2
+cd Termux-ui ; bash termux-ui.sh
+NORM
